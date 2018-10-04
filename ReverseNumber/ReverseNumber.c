@@ -14,9 +14,10 @@ int ReverseNumber(int x){
     long long result=0;
     num=x;
     for(i=n;i>0;i--){
+
         int m=num%10;
         num/=10;
-        result+=(m*(pow(10,i-1)));
+        result+=(m*pow(10,i-1));
     }
     if(result>INT_MAX||result<INT_MIN);
         return 0;
