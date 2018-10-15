@@ -1,5 +1,4 @@
 # Linux_Code
 
-Linux练习代码
-test git branch
+Linux平台下的练习代码
 
