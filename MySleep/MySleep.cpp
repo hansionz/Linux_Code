@@ -16,6 +16,7 @@ int MySleep(unsigned int second)
   sigaction(SIGALRM,&act,&oact);
   sigemptyset(&newmask);
   sigaddset(&newmask, SIGALRM); //1.屏蔽SIGALRM信号
+  sigprocmask(SIG_BLOCK, &newmask, &oldmask);
 
   alarm(second);
 
@@ -35,7 +36,7 @@ int main()
 {
   while(1)
   {
-       MySleep(3);
+       MySleep(1);
        cout << "wake up done" << endl;
   }
   return 0;
