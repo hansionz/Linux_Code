@@ -11,6 +11,7 @@
 
 using namespace std;
 
+template<class T>
 class BlockQueue{
 
 private:
@@ -58,7 +59,7 @@ private:
     return q.size() < (unsigned int)low_line ? true : false;
   }
 public:
-  BlockQueue(int _cap)
+  BlockQueue(const int& _cap)
     :cap(_cap)
     ,high_line((_cap*2)/3)
     ,low_line((_cap*1)/3)
@@ -107,7 +108,7 @@ public:
     pthread_cond_destroy(&c_cond);
   }
 private:
-  queue<int> q;
+  queue<T> q;
   int cap;
   
   int high_line;

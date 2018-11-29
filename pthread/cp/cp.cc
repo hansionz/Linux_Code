@@ -4,7 +4,7 @@ const int num = 10;
 
 void *consume_routine(void *arg)
 {
-  BlockQueue* pbq = (BlockQueue*)arg;
+  BlockQueue<int>* pbq = (BlockQueue<int>*)arg;
   int data;
   for(;;)
   {
@@ -14,7 +14,7 @@ void *consume_routine(void *arg)
 }
 void *product_routine(void *arg)
 {
-  BlockQueue* pbq = (BlockQueue*)arg;
+  BlockQueue<int>* pbq = (BlockQueue<int>*)arg;
   srand((unsigned long)time(NULL));
   for(;;)
   {
@@ -26,7 +26,7 @@ void *product_routine(void *arg)
 }
 int main()
 {
-  BlockQueue *pbq = new BlockQueue(num);
+  BlockQueue<int> *pbq = new BlockQueue<int>(num);
   pthread_t p,c;//product(生产者)、consume(消费者)
 
   pthread_create(&p, NULL, product_routine, (void*)pbq);
