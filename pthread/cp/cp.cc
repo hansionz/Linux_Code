@@ -10,6 +10,7 @@ void *consume_routine(void *arg)
   {
     pbq -> PopData(data);
     cout << "consume done, data is " << data << endl;
+    sleep(1);
   }
 }
 void *product_routine(void *arg)
@@ -29,9 +30,9 @@ int main()
   BlockQueue<int> *pbq = new BlockQueue<int>(num);
   pthread_t p,c;//product(生产者)、consume(消费者)
 
+  pthread_create(&c, NULL, consume_routine, (void*)pbq);
   pthread_create(&p, NULL, product_routine, (void*)pbq);
 
-  pthread_create(&c, NULL, consume_routine, (void*)pbq);
 
   pthread_join(p, NULL);
   pthread_join(c, NULL);
