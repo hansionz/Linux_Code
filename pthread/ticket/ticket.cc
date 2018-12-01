@@ -12,12 +12,14 @@ void *route(void* arg)
   char* name = (char*)arg;
   while(1)
   {
+    //对临界资源加锁
     pthread_mutex_lock(&lock);
     if(ticket > 0)
     {
       usleep(1000);
       cout << name << " buy ticket:" << ticket << endl;
       --ticket;
+      //if和else是两个不同的分支，两个分支都要解锁
       pthread_mutex_unlock(&lock);
     }
     else 
@@ -44,5 +46,6 @@ int main()
   pthread_join(t3, NULL);
   pthread_join(t4, NULL);
 
+  pthread_mutex_destroy(&lock);
   return 0;
 }
