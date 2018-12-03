@@ -2,7 +2,7 @@
 
 const int num = 10; 
 
-void *product_routine(void *prq)
+void *consume_routine(void *prq)
 {
   RingQueue<int>* q = (RingQueue<int>*)prq;
   int data;
@@ -12,7 +12,7 @@ void *product_routine(void *prq)
     cout << "consume done,data is:" << data << endl;
   }
 }
-void *consume_routine(void *prq)
+void *product_routine(void *prq)
 {
   RingQueue<int>* q = (RingQueue<int>*)prq;
   srand((unsigned long)time(NULL));
@@ -37,5 +37,6 @@ int main()
 
   delete prq;
   prq = nullptr;
+
   return 0;
 }

@@ -15,24 +15,28 @@ using namespace std;
 template<class T>
 class RingQueue{
 private:
-  void P(sem_t& sem)
-  {
-    sem_wait(&sem);
-  }
-
+ //等待信号量，信号量减1
+ void P(sem_t& sem)
+ {
+   sem_wait(&sem);
+ }
+ //发布信号量，信号量加1
  void V(sem_t& sem)
  {
    sem_post(&sem);
  }
 public:
+  //构造函数，在构造中必须先将vector初始化一定长度代表空格信号量的个数
   RingQueue(int cap)
     :_cap(cap)
     ,ring(cap)
   {
     c_step = p_step = 0;
     sem_init(&blank_sem, 0, _cap);
+    //数据信号量初始为0
     sem_init(&data_sem, 0, 0);
   }
+  //向队列中入一个数据,要保证同步与互斥
   void PushData(const T& data)
   {
     P(blank_sem);
@@ -43,6 +47,7 @@ public:
 
     V(data_sem);
   }
+  //从循环队列出一个数据
   void PopData(int& data)
   {
     P(data_sem);
@@ -65,8 +70,8 @@ private:
   sem_t blank_sem;
   sem_t data_sem;
 
-  int c_step;//消费者
-  int p_step;//生产者
+  int c_step;//消费者步伐
+  int p_step;//生产者步伐
 };
 
 #endif //__CP_HPP__
