@@ -22,6 +22,7 @@ typedef struct sockaddr_in sockaddr_in;
 class TcpSocket
 {
 public:
+  TcpSocket(){}
   TcpSocket(int fd)
   {
     _fd = fd;
