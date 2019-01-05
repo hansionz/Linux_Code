@@ -1,3 +1,7 @@
+/**
+ * 英译汉词典服务器
+ * @Hansionz
+ */ 
 #include "udp_server.hpp"
 #include <unordered_map>
 
@@ -5,7 +9,6 @@ std::unordered_map<std::string, std::string> dict;
 
 void Translate(const std::string& req, std::string* res)
 {
-  //std::cout << "translate" << std::endl;
   auto it = dict.find(req);
   if(it == dict.end())
   {
@@ -29,7 +32,6 @@ int main(int argc, char* argv[])
   dict.insert(std::make_pair("math","数学"));
 
   UdpServer server;
-  //std::string ip(argv[1]);
   server.Start(atoi(argv[1]), Translate);
 
   return 0;

@@ -42,7 +42,7 @@ public:
 
       //返回响应给客户端
       _sock.SendTo(res, re_ip, re_port);
-      std::cout << "ip: " << re_ip << "port: "<< re_port << "req: " << req << "res: " << res <<std::endl; 
+      std::cout << "ip: " << re_ip << ".port: "<< re_port << " | req: " << req << ".res: " << res <<std::endl; 
     } 
     _sock.Close();
   }

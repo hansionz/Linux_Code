@@ -84,7 +84,7 @@ public:
     {
       *port = ntohs(addr.sin_port);
     }
-    std::cout << "接收成功" << std::endl;
+    //std::cout << "接收成功" << std::endl;
   }
 
   //发送消息
@@ -101,7 +101,7 @@ public:
      perror("use sendto");
      return;
    }
-   std::cout << "发送成功" << std::endl;
+   //std::cout << "发送成功" << std::endl;
   }
 private:
   int _fd;

@@ -37,6 +37,8 @@ int main()
     Task t3(count, count, Div);
     tp -> AddTask(t3);
     ++count;
+    if (count == 3)
+      tp->Stop();
   }
   return 0;
 }

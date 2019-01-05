@@ -1,3 +1,7 @@
+/**
+ * 英译汉词典客户端
+ * @Hansionz
+ */ 
 #include "udp_client.hpp"
 
 int main(int argc, char* argv[])
