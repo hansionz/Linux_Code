@@ -5,18 +5,21 @@ std::unordered_map<std::string, std::string> dict;
 
 void Translate(const std::string& req, std::string* res)
 {
+  //std::cout << "translate" << std::endl;
   auto it = dict.find(req);
   if(it == dict.end())
   {
     *res = "词典中没有该词汇";
+    return;
   }
   *res = it->second;
 }
+
 int main(int argc, char* argv[])
 {
-  if(argc != 3)
+  if(argc != 2)
   {
-    std::cout << "Usage:[ip][port]" << std::endl;
+    std::cout << "Usage:./dict_server[port]" << std::endl;
     return 1;
   }
 
@@ -26,8 +29,8 @@ int main(int argc, char* argv[])
   dict.insert(std::make_pair("math","数学"));
 
   UdpServer server;
-  std::string ip(argv[1]);
-  server.Start(ip, atoi(argv[2]), Translate);
+  //std::string ip(argv[1]);
+  server.Start(atoi(argv[1]), Translate);
 
   return 0;
 }

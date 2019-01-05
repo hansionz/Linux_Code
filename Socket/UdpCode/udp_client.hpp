@@ -16,14 +16,14 @@ public:
     _sock.Close();
   }
 
-  bool RecvFrom(std::string* buf)
+  void RecvFrom(std::string* buf)
   {
-    return _sock.ReceFrom(buf);
+     _sock.ReceFrom(buf);
   }
 
-  bool SendTo(std::string& buf)
+  void SendTo(std::string& buf)
   {
-    return _sock.SendTo(buf, _ip, _port);
+     _sock.SendTo(buf, _ip, _port);
   }
 private:
   UdpSockect _sock;

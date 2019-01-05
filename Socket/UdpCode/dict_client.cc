@@ -4,7 +4,7 @@ int main(int argc, char* argv[])
 {
   if(argc != 3)
   {
-    std::cout << "Usage:[ip][port]" << std::endl;
+    std::cout << "Usage:./dict_client[ip][port]" << std::endl;
     return 1;
   }
   std::string ip(argv[1]);
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     client.SendTo(word);
     std::string res;
     client.RecvFrom(&res);
-    std::cout << word << " 的意思是：" << res << std::endl;
+    std::cout << res << std::endl;
   }
   return 0;
 }
