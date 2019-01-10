@@ -29,7 +29,7 @@ public:
   //打印结果 for test 
   void Show()
   {
-    cout << "thread:" << pthread_self() << ". Result is:" << _z << endl; 
+    cout << "thread:" << pthread_self() << "-运算数:"  << _x  <<"-" << _y << ". Result is:" << _z << endl; 
   }
 
 private:
@@ -123,6 +123,7 @@ public:
     {
       UnlockQueue();
       thread_nums--;
+      cout << "hehe" << endl;
       pthread_exit((void*)0);
       
       cout << "thread:" << pthread_self() << "quit!" << endl;
@@ -136,7 +137,7 @@ public:
     LockQueue();
     is_stop = true;
     UnlockQueue();
-    //线程的熟练如果大于0说明还存在线程在阻塞唤醒所有线程并停止
+    //线程数如果大于0说明还存在线程在阻塞唤醒所有线程并停止
     if(thread_nums > 0)
     {
       NotifyAllThread();
