@@ -1,5 +1,6 @@
 #pragma once 
 
+#include "comm.hpp"
 #include "tcp_socket.hpp"
 
 class TcpClient

@@ -13,14 +13,14 @@ int main(int argc, char* argv[])
 
   while(1)
   {
-    cout << "请输入查询的单词:" << endl;
-    string word;
-    cin >> word;
+    //cout << "请输入查询的单词:" << endl;
+    //string word;
+    //cin >> word;
+    cout << "请输入操作的数及运算方法(12345-->+-*/%):"<< endl;
+    Reqest_t req;
+    cin >> req.x >> req.y >> req.op;
 
-    if(word == "quit")
-      break;
-
-    client.Send(word);
+    client.Send(req);
     
     string res;
     client.Recv(&res);
