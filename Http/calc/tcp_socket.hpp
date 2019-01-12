@@ -13,6 +13,7 @@
 #include <netinet/in.h> 
 #include <arpa/inet.h> 
 #include <fcntl.h>
+#include "comm.hpp"
 
 using namespace std;
 
@@ -37,6 +38,7 @@ public:
   }
   void Close() const
   {
+    cout << "quit..." <<endl;
     close(_fd);
   }
   //绑定ip和端口号
@@ -79,24 +81,23 @@ public:
       *port = ntohs(peer.sin_port);
     }
   }
-void Recv(string* buf)
+void Recv(Request_t& buf)
 {
-  buf->clear();
-  char peer[1024];
-  ssize_t read_size = read(_fd, peer, sizeof(peer) - 1);
+  ssize_t read_size = read(_fd, &buf, sizeof(buf));
   if(read_size < 0){
     perror("use read");
     return;
   }
-  buf->assign(peer, read_size);
+  cout << "接收成功" << endl;
 }
-void Send(const string& buf)
+void Send(Respon_t& buf)
 {
-  ssize_t write_size = write(_fd, buf.c_str(), buf.size());
+  ssize_t write_size = write(_fd, &buf, sizeof(buf));
   if(write_size < 0){
     perror("use wirte");
     return;
   }
+  cout << "发送成功" << endl;
 }
 void Connect(string& ip, uint16_t port)
 {

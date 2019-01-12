@@ -1,6 +1,5 @@
 #pragma once 
 
-#include "comm.hpp"
 #include "tcp_socket.hpp"
 
 class TcpClient
@@ -16,13 +15,13 @@ public:
   {
     sock.Connect(_ip, _port);
   } 
-  void Recv(string* buf)
+  void Recv(Respon_t& buf)
   {
-    sock.Recv(buf);
+    recv(sock.Getfd(), &buf, sizeof(buf)-1, 0);
   }
-  void Send(const string& buf)
+  void Send(Request_t& buf)
   {
-    sock.Send(buf);
+    send(sock.Getfd(), &buf, sizeof(buf), 0);
   }
   ~TcpClient()
   {

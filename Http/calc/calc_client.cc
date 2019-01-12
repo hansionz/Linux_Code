@@ -1,4 +1,6 @@
 #include "tcp_client.hpp"
+#include <string.h>
+#include <stdio.h>
 
 int main(int argc, char* argv[])
 {
@@ -11,21 +13,22 @@ int main(int argc, char* argv[])
   TcpClient client(argv[1], atoi(argv[2]));
   client.Connect();
 
+  Request_t req;
+  Respon_t res;
   while(1)
   {
-    //cout << "请输入查询的单词:" << endl;
-    //string word;
-    //cin >> word;
-    cout << "请输入操作的数及运算方法(12345-->+-*/%):"<< endl;
-    Reqest_t req;
-    cin >> req.x >> req.y >> req.op;
+    memset(&req, 0 ,sizeof(req));
+    memset(&res, 0, sizeof(res));
+
+    cout << "请输入[左操作数][右操作数]:"; 
+    cin >> req.x >> req.y;
+    cout << "请输入操作符[12345--->+-*/%]:";
+    cin >> req.op;
 
     client.Send(req);
-    
-    string res;
-    client.Recv(&res);
-
-    cout << "意思是:" << res << endl;
+    client.Recv(res);
+    cout << "结果是否正确:" << res.flag << endl;
+    cout << "运算结果:" << res.res << endl;
   }
   return 0;
 }

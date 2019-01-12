@@ -1,13 +1,15 @@
 #pragma once 
 
-typedef struct Reqest{
-  int x;//左操作数
-  int y;//右操作数
-  int op;//执行操作(+-*/%-->12345)
-}Reqest_t;
+typedef struct Request
+{
+  int x;
+  int y;
+  int op;//+-*/%--->12345
 
-typedef struct Respnose{
-  bool status; //0 1 2
+}Request_t;
+
+typedef struct Respon
+{
   int res;
-}Respnose_t;
-
+  int flag; //0 1 2
+}Respon_t;
