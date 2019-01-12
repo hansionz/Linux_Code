@@ -53,13 +53,15 @@ public:
         perror("use accept");
         return;
       }
-      
+     cout <<"a client "<<endl;
       char req[1024];//用来接收请求报文
       int rs = recv(newsock, req, sizeof(req) - 1, 0);
       if(rs < 0){
         perror("use recv");
         return;
       }
+      req[rs]=0;
+
       cout << "Req:" << req << endl;
 
       const char* hello = "<h1>hello world</h1>";
