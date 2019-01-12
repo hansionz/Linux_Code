@@ -1,17 +1,5 @@
-#include "tcp_proc_server.hpp"
-#include <unordered_map>
+#include "tcp_server.hpp"
 
-unordered_map<string, string> dict;
-void Translate(string& req, string* res)
-{
-  auto it = dict.find(req);
-  if(it == dict.end())
-  {
-    *res = "词典中没有该单词";
-    return;
-  }
-  *res = it->second;
-}
 int main(int argc, char* argv[])
 {
   if(argc != 3)
@@ -20,14 +8,10 @@ int main(int argc, char* argv[])
     return 1;
   }
 
-  //初始化词典
-  dict.insert(make_pair("book","书"));
-  dict.insert(make_pair("tree", "树"));
-  dict.insert(make_pair("dream","梦想"));
 
   string ip(argv[1]);
-  TcpProcServer server(ip,atoi(argv[2])); 
-  server.Start(Translate);
+  TcpServer server(ip,atoi(argv[2])); 
+  server.Start();
 
   return 0;
 }

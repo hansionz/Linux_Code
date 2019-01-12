@@ -37,6 +37,7 @@ public:
   }
   void Close() const
   {
+    cout << "quit..." <<endl;
     close(_fd);
   }
   //绑定ip和端口号
@@ -89,6 +90,7 @@ void Recv(string* buf)
     return;
   }
   buf->assign(peer, read_size);
+  cout << "接收成功" << endl;
 }
 void Send(const string& buf)
 {
@@ -97,6 +99,7 @@ void Send(const string& buf)
     perror("use wirte");
     return;
   }
+  cout << "发送成功" << endl;
 }
 void Connect(string& ip, uint16_t port)
 {
