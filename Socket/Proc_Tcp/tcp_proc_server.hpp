@@ -27,7 +27,11 @@ public:
     else if(id == 0){//child
       while(1){
         string req;
-        newsock.Recv(&req);
+        bool ret = newsock.Recv(&req);
+        if(!ret){
+          newsock.Close();
+          return;
+        }
         string res;
         hanler(req, &res);
         newsock.Send(res);

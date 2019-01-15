@@ -79,16 +79,20 @@ public:
       *port = ntohs(peer.sin_port);
     }
   }
-void Recv(string* buf)
+bool Recv(string* buf)
 {
   buf->clear();
   char peer[1024];
   ssize_t read_size = read(_fd, peer, sizeof(peer) - 1);
+  if(read_size == 0){
+    return false;
+  }
   if(read_size < 0){
     perror("use read");
-    return;
+    return false;
   }
   buf->assign(peer, read_size);
+  return true;
 }
 void Send(const string& buf)
 {

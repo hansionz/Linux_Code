@@ -1,9 +1,9 @@
 .PHONY:all
 all:dict_client dict_server
 
-dict_client:dict_client.cc tcp_client.hpp tcp_socket.hpp
+dict_client:dict_client.cc 
 	g++ -o $@ -std=c++11 $^
-dict_server:dict_server.cc tcp_proc_server.hpp  tcp_socket.hpp
+dict_server:dict_server.cc 
 	g++ -o $@ -std=c++11 $^
 .PHONY:clean
 clean:
