@@ -28,11 +28,13 @@ public:
       perror("ues socket");
       return;
     }
+    int opt = 1;
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = inet_addr(_ip.c_str());
     addr.sin_port = htons(_port);
     //绑定
+    setsockopt(_sock, SOL_SOCKET, SO_REUSEADDR, (struct sockaddr*)&addr, sizeof(addr));
     int ret = bind(_sock, (sockaddr*)&addr, sizeof(addr));
     if(ret < 0){
       perror("ues bind");
@@ -53,7 +55,7 @@ public:
         perror("use accept");
         return;
       }
-     cout <<"a client "<<endl;
+      cout <<"a client connect!"<<endl;
       char req[1024];//用来接收请求报文
       int rs = recv(newsock, req, sizeof(req) - 1, 0);
       if(rs < 0){
@@ -64,11 +66,12 @@ public:
 
       cout << "Req:" << req << endl;
 
-      const char* hello = "<h1>hello world</h1>";
+      const char* hello = "<h1>hello world</h1>\n";
       char res[1024];
       //状态行 正文长度 空行 响应正文
-      sprintf(res, "HTTP/1.0 200 OK\nContent-Length:%lu\n\n%s",strlen(hello), hello);
-      send(newsock, res, sizeof(res), 0);
+      sprintf(res, "HTTP/1.0 302 REDIRECT\nContent-Length:%lu\nLocation:www.baidu.com\n\n%s",strlen(hello), hello);
+      send(newsock, res, strlen(res), 0);
+      close(newsock);
     }
   }
 private:
