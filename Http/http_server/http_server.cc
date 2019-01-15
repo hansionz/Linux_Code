@@ -55,6 +55,7 @@ public:
         perror("use accept");
         return;
       }
+      cout<< client_addr.sin_port << endl;
       cout <<"a client connect!"<<endl;
       char req[1024];//用来接收请求报文
       int rs = recv(newsock, req, sizeof(req) - 1, 0);
