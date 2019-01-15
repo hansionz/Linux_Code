@@ -1,4 +1,4 @@
-#include "tcp_proc_server.hpp"
+#include "tcp_server.hpp"
 #include <unordered_map>
 
 unordered_map<string, string> dict;
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
   dict.insert(make_pair("dream","梦想"));
 
   string ip(argv[1]);
-  TcpProcServer server(ip,atoi(argv[2])); 
+  TcpServer server(ip,atoi(argv[2])); 
   server.Start(Translate);
 
   return 0;

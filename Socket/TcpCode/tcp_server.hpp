@@ -33,7 +33,13 @@ public:
       {
         //5.连接成功读取客户端请求
         string req;
-        new_sock.Recv(&req);
+        bool ret = new_sock.Recv(&req);
+        cout << ret << endl;
+        if(!ret)
+        {
+          //new_sock.Close();
+          break;
+        }
         //6.处理请求
         string res;
         handler(req, &res);

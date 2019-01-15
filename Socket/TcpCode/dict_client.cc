@@ -27,5 +27,6 @@ int main(int argc, char* argv[])
 
     cout << "意思是:" << res << endl;
   }
+  cout << "good bye" << endl;
   return 0;
 }
