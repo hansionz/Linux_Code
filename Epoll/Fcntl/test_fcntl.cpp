@@ -13,7 +13,7 @@ void SetNoBlock(int fd)
     perror("use fcntl");
     return;
   }
-  fcntl(fd, F_SETFL | O_NONBLOCK);
+  fcntl(fd, F_SETFL, f | O_NONBLOCK);
 }
 
 int main()
