@@ -14,7 +14,7 @@ int main()
 {
   fd_set read_fds;
   struct timeval time;
-  time.tv_sec =10; //设置阻塞超时时间为3秒钟
+  time.tv_sec =10; //设置阻塞超时时间为10秒钟
   time.tv_usec = 0;
   char buf [10];
 
